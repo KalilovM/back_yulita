@@ -8,10 +8,11 @@ DEBUG = config("DEBUG", default=False, cast=bool)
 ALLOWED_HOSTS = config(
     "ALLOWED_HOSTS", default="*", cast=lambda v: [s.strip() for s in v.split(",")]
 )
-ALLOWED_ORIGINS = config(
+CORS_ALLOWED_ORIGINS = config(
     "ALLOWED_ORIGINS", default="*", cast=lambda v: [s.strip() for s in v.split(",")]
 )
-
+CORS_ALLOW_CREDENTIALS = True
+AUTH_USER_MODEL = "users.User"
 
 # Application definition
 
@@ -33,12 +34,12 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "corsheaders.middleware.CorsMiddleware",
 ]
 
 ROOT_URLCONF = "config.urls"
