@@ -5,3 +5,4 @@ __pycache__
 venv
 .env
 migrations
+clothes_images
